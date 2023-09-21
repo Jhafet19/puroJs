@@ -11,7 +11,7 @@ for (let index = 0; index < carrito.length; index++) {
 console.log(`${carrito[index].nombre} - Precio: ${carrito[index].precio}`)    
 }
 
-carrito.forEach(function(producto){
+carrito.forEach((producto)=>{
     console.log(`${producto.nombre} - --- Precio: ${producto.precio}`)    
 
 })
