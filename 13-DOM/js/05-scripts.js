@@ -2,3 +2,6 @@
 const a=document.querySelectorAll('.card')
 
 console.log(a)
+
+
+const formularion=document.querySelectorAll('')
