@@ -57,6 +57,7 @@ function mostrarError(err) {
 function consultarApi(ciudad, pais) {
     const appId = '883e93596885a7cfee77d45e0952d34f'
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
+    spinner()
 
     fetch(url)
         .then(res => res.json())
@@ -71,26 +72,66 @@ function consultarApi(ciudad, pais) {
 }
 
 function mostrarClima(data) {
-    const { main: { temp, temp_max, temp_min } } = data
-    const centigrados = temp - 273.15
+    const { name, main: { temp, temp_max, temp_min } } = data
 
+    const centigrados = kelvinCentigrados(temp)
+    const max = kelvinCentigrados(temp_max)
+    const min = kelvinCentigrados(temp_min)
     const actual = document.createElement('p');
     actual.innerHTML = `${centigrados}&#8451;`;
-    actual.classList.add('font-bold','text-6xl')
+    actual.classList.add('font-bold', 'text-6xl')
 
-    const resultadoDiv=document.createElement('div');
-    resultadoDiv.classList.add('text-center','text-white')
+    const tempMaxima = document.createElement('p')
+    tempMaxima.innerHTML = ` Max: ${max}&#8451;`
+    tempMaxima.classList.add('text-xl')
+
+    const tempMinima = document.createElement('p')
+    tempMinima.innerHTML = ` Min: ${min}&#8451;`
+    tempMinima.classList.add('text-xl')
+
+    const nombreCiudad = document.createElement('p')
+    nombreCiudad.textContent = `Clima en ${name}`
+    nombreCiudad.classList.add('font-bold', 'text-2xl')
+
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.classList.add('text-center', 'text-white')
+    resultadoDiv.appendChild(nombreCiudad);
     resultadoDiv.appendChild(actual);
-    
+    resultadoDiv.appendChild(tempMaxima);
+    resultadoDiv.appendChild(tempMinima);
+
     resultado.appendChild(resultadoDiv)
-    console.log("🚀 ~ mostrarClima ~ temp:", temp - 273.15)
+
 
 }
 
-function limpiarHtml(){
-    while(resultado.firstChild){
+const kelvinCentigrados = (grados) => parseInt(grados - 273.15)
+
+
+function limpiarHtml() {
+    while (resultado.firstChild) {
         resultado.removeChild(resultado.firstChild);
     }
 }
 
+function spinner() {
+    limpiarHtml()
+    const divSpinner = document.createElement('div')
+    divSpinner.classList.add('sk-fading-circle')
+    divSpinner.innerHTML = `
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+    `
+    resultado.appendChild(divSpinner)
+}
 //https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
