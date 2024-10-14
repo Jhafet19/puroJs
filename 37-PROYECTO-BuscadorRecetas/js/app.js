@@ -102,13 +102,45 @@ function iniciarApp() {
     }
     function mostrarRecetaModal(receta) {
         console.log("🚀 ~ mostrarRecetaModal ~ receta:", receta)
-        const { idMeal, strInstructions, strMeal, strThumb } = receta
+        const { idMeal, strInstructions, strMeal, strMealThumb } = receta
         const modalTitle = document.querySelector('.modal .modal-title');
-        console.log("🚀 ~ mostrarRecetaModal ~ modalTitle:", modalTitle)
         const modalBody = document.querySelector('.modal .modal-body');
 
-        modalTitle.textContent = strMeal
-        console.log("🚀 ~ mostrarRecetaModal ~ modalTitle:", modalTitle)
+        modalTitle.textContent = strMeal;
+
+        modalBody.innerHTML = `
+        <img class="img-fluid" src="${strMealThumb}" alt=${strMeal}/>
+        <h3 class="my-3">Instrucciones</h3>
+        <p>${strInstructions}</p>
+        <h3 class="my-3">Ingredientes y cantidades</h3>
+        `
+
+        const listGroup = document.createElement('UL')
+        listGroup.classList.add('list-group');
+
+        //mostrar cantidades e ingrediente
+        for (let i = 1; i <= 20; i++) {
+
+            if (receta[`strIngredient${i}`]) {
+                const ingrediente = receta[`strIngredient${i}`]
+                const cantidad = receta[`strMeasure${i}`];
+                const ingredienteLi = document.createElement('LI')
+                ingredienteLi.classList.add('list-group-item');
+                ingredienteLi.textContent = `${ingrediente} - ${cantidad}`;
+                listGroup.appendChild(ingredienteLi);
+
+            }
+        }
+        modalBody.appendChild(listGroup)
+
+        const modalFooter=document.querySelector('.modal-footer')
+
+        //Botones de cerrar y favorito
+        const btnFavorito=document.createElement('BUTTON')
+        btnFavorito.classList.add('btn', 'btn-danger','col')
+        btnFavorito.textContent='Guardar favorito'
+
+        modalFooter.appendChild(btnFavorito)
         modal.show()
     }
 
