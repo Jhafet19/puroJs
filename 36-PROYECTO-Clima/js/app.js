@@ -53,7 +53,6 @@ function mostrarError(err) {
         }, 5000);
     }
 }
-
 function consultarApi(ciudad, pais) {
     const appId = '883e93596885a7cfee77d45e0952d34f'
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
