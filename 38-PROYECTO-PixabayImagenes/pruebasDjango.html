@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="card col-8">
+                <form method="post" onsubmit="return validateForm(event)" id="registerForm" class="">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="exwF2bgt99fS4jBPbMS0A71jQ1OJr7ec43ahjcqtgzhp2kJ5RQzqOJJOeiaN6LR2">
+
+                    <p>
+                        <label for="correoInput">Correo electrónico:</label>
+                        <input type="email" name="email" value="20223qw107@utez.edu.mx" class="form-control" placeholder="Correo electrónico" required pattern="^[0-9]{5}[a-zA-Z]{2}[0-9]{3}@utez\.edu\.mx$" title="Debe contar con un correo institucional" id="correoInput" maxlength="320" autofocus>
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="nombreInput">Nombre completo:</label>
+                        <input type="text" name="name" value="Jhafet" class="form-control" placeholder="Ingrese su nombre" required minlength="3" maxlength="100" pattern="^[a-zA-Z ]+$" title="Solo se permiten letras y espacios" id="nombreInput">
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="apellidoInput">Apellido:</label>
+                        <input type="text" name="surname" value="Rodriguez" class="form-control" placeholder="Ingrese su apellido" required minlength="3" maxlength="100" pattern="^[a-zA-Z ]+$" title="Solo se permiten letras y espacios" id="apellidoInput">
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="matriculaInput">Matrícula:</label>
+                        <input type="text" name="control_number" value="20223qw107" class="form-control" placeholder="Número de control" required pattern="^[0-9]{5}[a-zA-Z]{2}[0-9]{3}$" title="Solo se permiten matrículas de la UTEZ" id="matriculaInput" maxlength="10">
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="edadInput">Edad:</label>
+                        <input type="number" name="age" value="21" class="form-control" placeholder="Edad" required min="18" max="100" title="Debe ser un número entre 18 y 100" id="edadInput">
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="telefonoInput">Teléfono:</label>
+                        <input type="text" name="tel" value="7775120433" class="form-control" placeholder="Número telefónico" required pattern="^[0-9]{10}$" title="Debe ser un número de teléfono de 10 dígitos" id="telefonoInput" maxlength="10">
+
+
+                    </p>
+
+                    <ul class="errorlist">
+                        <li>La contraseña debe tener al menos 8 caracteres, incluir un número y un símbolo (!, #, $, %,
+                            &amp; o ?).</li>
+                    </ul>
+                    <p>
+                        <label for="id_password1">Contraseña:</label>
+                        <input type="password" name="password1" class="form-control" placeholder="Contraseña" required title="Debe tener al menos 8 caracteres, incluir un número y un símbolo (!, #, $, %, &amp; o ?)." id="id_password1" aria-invalid="true">
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="id_password2">Confirmar contraseña:</label>
+                        <input type="password" name="password2" class="form-control" placeholder="Confirmar contraseña" required title="Debe coincidir con la contraseña anterior." id="id_password2">
+
+
+
+
+                    </p>
+                    <button type="submit" class="btn btn-primary m-2">Registrarse</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--
+   -->
+
+
+    <script>
+        function validateForm(e) {
+      e.preventDefault();
+
+      const correo = document.querySelector("#correoInput").value
+      console.log("🚀 ~ validateForm ~ correo:", correo)
+      const nombre = document.querySelector("#nombreInput").value
+      console.log("🚀 ~ validateForm ~ nombre:", nombre)
+      const apellido = document.querySelector("#apellidoInput").value
+      console.log("🚀 ~ validateForm ~ apellido:", apellido)
+      const matricula = document.querySelector("#matriculaInput").value
+      console.log("🚀 ~ validateForm ~ matricula:", matricula)
+      const edad = document.querySelector("#edadInput").value
+      console.log("🚀 ~ validateForm ~ edad:", edad)
+      const telefono = document.querySelector("#telefonoInput").value
+      console.log("🚀 ~ validateForm ~ telefono:", telefono)
+      const password1 = document.querySelector("#id_password1").value
+      console.log("🚀 ~ validateForm ~ password1:", password1)
+      const password2 = document.querySelector("#id_password2").value
+      console.log("🚀 ~ validateForm ~ password2:", password2)
+      const form = document.getElementById("registerForm");
+      console.log(password1.length < 8)
+      console.log(password1);
+
+
+
+      if (password1.length < 8) {
+        console.log("La contraseña es menor a 8")
+        enviarAlerta("La contraseña debe contener almenos 8 caracteres", "error")
+        return false;
+      }
+
+      if (!/\d/.test(password1) && !/[!#$%&?]/.test(password1)) {
+        enviarAlerta("La contraseña debe contener al menos un número y un simbolo (!, #, $, %, & o ?)", "error");
+        return false;
+      }
+
+      if (password1 !== password2) {
+        enviarAlerta("Las contraseñas no coinciden", "error");
+        return false;
+      }
+
+      //enviarAlerta("Formulario válido", "success", "Envio exitoso");
+      form.submit();
+      return true
+
+    }
+
+    function enviarAlerta(mensaje, tipo, title = "Error") {
+      Swal.fire({
+        title: `${title}`,
+        text: `${mensaje}`,
+        icon: `${tipo}`
+      });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const password1 = document.querySelector("#id_password1")
+      const password2 = document.querySelector("#id_password2")
+
+      password1.classList.add('form-control');
+      password2.classList.add('form-control');
+      password1.placeholder = 'Contraseña'
+      password2.placeholder = 'confirmar contraseña'
+      password1.setAttribute("aria-describedby", "passwordHelpBlock");
+      password2.setAttribute("aria-describedby", "passwordHelpBlock");
+
+
+    })
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <!-- Modal -->
+
+    <div class="modal fade" id="messageModal" tabindex="-1" aria- labelledby="messageModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Mensaje</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMessage"></p>
+                    <img id="modalImage" class="img-fluid" style="display: none;" alt="Imagen del mensaje">
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        let message = {"tipo": "error", "mensaje": "La contrase\u00f1a debe tener al menos 8 caracteres, incluir un n\u00famero y un s\u00edmbolo (!, #, $, %, & o ?).", "codigo": 400, "imagen": null}; // El mensaje se pasa desde Django
+        console.log("🚀 ~ message:", message)
+
+    if (message) {
+        document.getElementById("modalMessage").innerText =
+            `[${message.tipo.toUpperCase()}] Código ${message.codigo}: ${message.mensaje}`;
+        if (message.imagen) {
+            const imgElement = document.getElementById("modalImage");
+            imgElement.src = message.imagen;
+            imgElement.style.display = "block";
+        }
+        const modal = new bootstrap.Modal(document.getElementById('messageModal'));
+        console.log("🚀 ~ modal:", modal)
+        
+        modal.show();
+    }
+    })
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+
+</html>
