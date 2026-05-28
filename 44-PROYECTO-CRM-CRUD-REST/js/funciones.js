@@ -16,5 +16,5 @@ export function mostrarAlerta(mensaje) {
 }
 
 export function validar(obj) {
-    return !Object.values(obj).every(input => input.trim() !== '');
+    return !Object.values(obj).every(input => input !== '');
 }
