@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Testing al cliente Debe de ser un cliente Premium 1`] = `
+{
+  "balance": 500,
+  "nombre": "Jhafet 2",
+  "tipo": "Premium",
+}
+`;
