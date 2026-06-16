@@ -1,7 +1,32 @@
 extends ./layout/index
 
 block contenido
-    p Nosotros
-    img(src="img/cupon.jpg", alt="")
+    main.conatiner.mt-5    
+        .row 
+            .col-md-5
+                img(src="img/nosotros.jpg", alt="Nosotros" class="img-fluid")
+            .col-md-7
+                h1=pagina
+                blockquote   Incididunt officia quis est enim eu aliquip non laborum mollit consectetur. Occaecat aliqua excepteur sunt elit id sunt esse irure do voluptate commodo esse proident. Labore aute ipsum consectetur culpa labore. Reprehenderit sint enim aliquip irure enim ut ea et. Esse sit et ullamco duis. Dolore esse mollit cillum ex deserunt anim magna. Consequat sunt ex non eiusmod aute qui ad nostrud quis nostrud Lorem.
 
-    
+                p Adipisicing reprehenderit esse eiusmod et culpa ut dolore sint pariatur ullamco in. Voluptate labore duis do tempor qui commodo adipisicing. Aliqua fugiat elit nostrud excepteur amet do. Aliquip ut commodo ea do et magna amet sunt. Aliqua dolor ex ex culpa quis cillum sint veniam sunt est.
+
+                p Fugiat aute duis veniam exercitation fugiat. Velit ullamco consequat dolore est occaecat veniam. Dolor ex magna eiusmod nostrud qui consequat do elit officia. Aute ea in Lorem deserunt aute esse ex nulla voluptate consequat esse. Reprehenderit elit irure do magna fugiat ad ad exercitation irure laborum veniam esse ad non. Magna consequat incididunt deserunt deserunt. Laboris aute labore incididunt reprehenderit labore dolor.
+
+    .listado-iconos 
+        .container.mt-5.py-5.text-center   
+            .row 
+                .col-md-4
+                    img(src="/img/icono_seguridad.svg", alt="Icono Seguridad" class="img-fluid mb-4")
+                    h2.mb-4 Seguridad
+                    p Amet excepteur quis nostrud labore in amet ex sunt occaecat minim culpa irure sint.
+                
+                .col-md-4
+                    img(src="/img/icono_destinos.svg", alt="Icono Seguridad" class="img-fluid mb-4")
+                    h2.mb-4 Los mejores Destinos
+                    p Amet excepteur quis nostrud labore in amet ex sunt occaecat minim culpa irure sint.
+                    
+                .col-md-4
+                    img(src="/img/icono_precios.svg", alt="Icono Seguridad" class="img-fluid mb-4")
+                    h2.mb-4 Los mejores precios
+                    p Amet excepteur quis nostrud labore in amet ex sunt occaecat minim culpa irure sint.

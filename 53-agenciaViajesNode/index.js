@@ -5,11 +5,20 @@ import router from "./routes/index.js";
 const app = express()
 const port = process.env.PORT || 4000
 
-app.use('/', router)
+app.set('view engine', 'pug')
+
+
+//Obetener el año actual
+app.use((req, res, next) => {
+    const year = new Date()
+    res.locals.actualYear = year.getFullYear()
+    res.locals.nombreSito='Agencia de Viajes;'
+    next()
+})
 
 app.use(express.static('public'))
 
-app.set('view engine', 'pug')
+app.use('/', router)
 
 app.listen(port, () => {
     console.log('El servidor esta escuchando el puerto ', port)
