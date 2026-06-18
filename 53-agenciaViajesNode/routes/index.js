@@ -1,5 +1,5 @@
 import express from 'express'
-import { paginaInicio, paginaNotosotros, paginaContacto, paginaViajes, paginaTestimoniales } from '../controllers/controller.js'
+import { paginaInicio, paginaNotosotros, paginaContacto, paginaViajes, paginaTestimoniales } from '../controllers/paginasController.js'
 
 const router = express.Router()
 
