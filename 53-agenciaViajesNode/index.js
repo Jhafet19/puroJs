@@ -24,6 +24,9 @@ app.use((req, res, next) => {
     next()
 })
 
+//agregar BodyParser
+app.use(express.urlencoded({ extended: true }))
+
 app.use(express.static('public'))
 
 app.use('/', router)
