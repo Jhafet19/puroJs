@@ -1,6 +1,29 @@
 extends ./layout/index
 
+block slider
+    .slider 
+        h1 Rio de Janiero
+        em aventura
+
 block contenido
     main.conatiner.mt-5    
+        h2.text-center.mb-5 Sobre Nosotros
+        .row.mb-5 
+            .col-md-6
+                p Amet nostrud ipsum dolor reprehenderit esse. Elit ad est ad laboris ut adipisicing ullamco officia consectetur tempor exercitation et anim. In qui eu cillum nisi. Velit cillum et cillum proident. Ipsum tempor consectetur ullamco dolore aute id tempor. Pariatur anim sint Lorem ipsum occaecat velit fugiat non in veniam nisi.
+                p Veniam occaecat ut esse ipsum veniam tempor occaecat laboris dolor est laborum mollit eu quis. Officia id in commodo qui. Ullamco nulla laboris est enim reprehenderit dolor. Anim aute exercitation voluptate proident. Nisi in pariatur ullamco qui laborum elit enim culpa excepteur laborum.
+            .col-md-6
+                img(src="/img/inicio_nosotros.jpg" alt="Imagen nosotros" class="img-fluid")
         .row 
-            h1=pagina
+            include ./layout/bloque_viajes
+    .descuento 
+        .container 
+            .row 
+                .col-md-6   
+                    .contenido 
+                        h3 5$ de Descuento 
+                        p.titulo Viaje a Canada
+                        p.fecha 20 de Marzo del 2026 - 28 de Marzo 2026
+                        p.precio  2500
+    .container 
+        h2.mt-5.text-center Testimoniales
