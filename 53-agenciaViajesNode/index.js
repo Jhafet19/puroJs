@@ -3,7 +3,6 @@ import router from "./routes/index.js";
 import db from './config/db.js'
 
 
-
 const app = express()
 
 //Conectar a la base de Datos
