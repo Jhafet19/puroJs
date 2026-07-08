@@ -3,7 +3,7 @@ import moongose from "mongoose";
 
 const conectarDB = async () => {
     try {
-        const db = await mongoose.connect("mongodb://localhost:27017/apv")
+        const db = await mongoose.connect(process.env.MONGO_URI)
 
         const url = `${db.connection.host}:${db.connection.port}`
         console.log("🚀 ~ Mongo conectado en  ~ url:", url)
