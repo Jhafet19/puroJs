@@ -3,6 +3,7 @@ import conectarDB from './config/db.js'
 import dotenv from 'dotenv'
 import veterinarioRoutes from './routes/veterinarioRoutes.js'
 const app = express();
+app.use(express.json())
 dotenv.config()
 conectarDB()
 
