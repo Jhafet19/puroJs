@@ -27,9 +27,28 @@ const perfil = (req, res) => {
     res.json({ url: 'Desde APi/Veterinarios/Perfil' })
 }
 
-const confirmar = (req, res) => {
-    console.log(req.params.token)
-    res.json({ msg: 'Confirmando Cuenta' })
+const confirmar = async (req, res) => {
+    
+    const { token } = req.params
+    const usuarioConfirmar = await Veterinario.findOne({ token })
+    if (!usuarioConfirmar) {
+        const error = new Error('Token no valido')
+        return res.status(404).json({ msg: error.message })
+
+    }
+    console.log("🚀 ~ confirmar ~ usuarioConfirmar:", usuarioConfirmar)
+    try {
+        usuarioConfirmar.confirmado = true;
+        usuarioConfirmar.token = null;
+        await usuarioConfirmar.save()
+
+        res.json({ msg: 'Usuuario Confirmado Correctamente' })
+
+    } catch (error) {
+        console.log("🚀 ~ confirmar ~ error:", error)
+
+    }
+
 }
 
 export {
