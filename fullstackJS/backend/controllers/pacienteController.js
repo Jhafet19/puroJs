@@ -3,20 +3,54 @@ import Paciente from "../models/Paciente.js"
 
 const agregarPaciente = async (req, res) => {
     const paciente = new Paciente(req.body)
-    console.log(paciente)
+    paciente.veterinario = req.veterinario._id
     try {
+        const pacienteGuardado = await paciente.save()
+        res.json(pacienteGuardado)
 
-        
     } catch (error) {
         console.log(error)
     }
 
 }
-const obtenerPaciente = async (req, res) => {
+const obtenerPacientes = async (req, res) => {
+    console.log(req.veterinario)
+    const pacientes = await Paciente.find().where('veterinario').equals(req.veterinario);
+    res.json(pacientes)
 
 }
 
+const obtenerPaciente = async (req, res) => {
+
+    const { id } = req.params
+    const paciente = await Paciente.findById(id)
+    if (paciente.veterinario._id.toString() !== req.veterinario._id.toString()) {
+        res.json({ msg: 'Accion no Válida' })
+    }
+    if (paciente) {
+        res.json(paciente)
+
+    }
+}
+
+const actualizarPaciente = async (req, res) => {
+    console.log(req.veterinario)
+    const pacientes = await Paciente.find().where('veterinario').equals(req.veterinario);
+    res.json(pacientes)
+
+}
+const eliminarPaciente = async (req, res) => {
+    console.log(req.veterinario)
+    const pacientes = await Paciente.find().where('veterinario').equals(req.veterinario);
+    res.json(pacientes)
+
+}
+
+
 export {
     agregarPaciente,
-    obtenerPaciente
+    obtenerPacientes,
+    obtenerPaciente,
+    eliminarPaciente,
+    actualizarPaciente
 }
