@@ -20,7 +20,6 @@ const veterinarioSchema = mongoose.Schema({
     },
     telefono: {
         type: String,
-        required: true,
         trim: true,
         default: null
     },
