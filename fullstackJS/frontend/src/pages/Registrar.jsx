@@ -39,7 +39,7 @@ export default function Registrar() {
         } catch (error) {
             console.log("🚀 ~ handleSubmit ~ error:", error.response.data.message)
             setAlerta({ msg: error.response.data.message, error: true })
-
+ 
         }
     }
 
