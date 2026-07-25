@@ -32,14 +32,14 @@ export default function Registrar() {
         setAlerta({})
 
         try {
-            const url = 'http://localhost:4000/api/veterinarios'
+            const url = `${import.meta.env.VITE_BACKEND_URL}api/veterinarios`
             const res = await axios.post(url, { nombre, email, password })
             console.log(res)
             setAlerta({ msg: 'Creado Correctamente, revisa tu email', error: false })
         } catch (error) {
             console.log("🚀 ~ handleSubmit ~ error:", error.response.data.message)
             setAlerta({ msg: error.response.data.message, error: true })
- 
+
         }
     }
 
