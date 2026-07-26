@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import Alerta from "../components/Alerta"
-import axios from 'axios'
+import clienteAxios from "../config/axios"
 export default function Registrar() {
 
     const [nombre, setNombre] = useState('')
@@ -32,9 +32,8 @@ export default function Registrar() {
         setAlerta({})
 
         try {
-            const url = `${import.meta.env.VITE_BACKEND_URL}api/veterinarios`
-            const res = await axios.post(url, { nombre, email, password })
-            console.log(res)
+            const url = `veterinarios`
+            const res = await clienteAxios.post(url, { nombre, email, password })
             setAlerta({ msg: 'Creado Correctamente, revisa tu email', error: false })
         } catch (error) {
             console.log("🚀 ~ handleSubmit ~ error:", error.response.data.message)
