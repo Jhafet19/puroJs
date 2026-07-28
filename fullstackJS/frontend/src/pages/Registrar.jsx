@@ -7,7 +7,7 @@ export default function Registrar() {
 
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('')    
     const [repetirPassword, setRepetirPassword] = useState('')
     const [alerta, setAlerta] = useState({})
 
@@ -33,7 +33,7 @@ export default function Registrar() {
 
         try {
             const url = `veterinarios`
-            const res = await clienteAxios.post(url, { nombre, email, password })
+             await clienteAxios.post(url, { nombre, email, password })
             setAlerta({ msg: 'Creado Correctamente, revisa tu email', error: false })
         } catch (error) {
             console.log("🚀 ~ handleSubmit ~ error:", error.response.data.message)
