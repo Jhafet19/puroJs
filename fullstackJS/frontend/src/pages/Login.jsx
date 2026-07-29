@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 
 
 
 export default function Login() {
+    const { auth, setAuth } = useAuth()
+    console.log("🚀 ~ Login ~ auth:", auth)
     return (
         < >
             <div>

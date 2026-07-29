@@ -14,7 +14,7 @@ export default function NuevoPassword() {
   useEffect(() => {
     const comprobarToken = async () => {
       try {
-        await clienteAxios(`/veterinarios/olvide-password/${token}`)
+        await clienteAxios(`/veterinarios/olivide-password/${token}`)
         setAlerta({ msg: 'Coloca Tu Nuevo Password' })
         setTokenValido(true)
       } catch (error) {
@@ -22,6 +22,7 @@ export default function NuevoPassword() {
       }
     }
 
+    comprobarToken()
   }, [])
 
   async function handleSubmit(e) {
@@ -31,7 +32,7 @@ export default function NuevoPassword() {
     }
 
     try {
-      const url = `/veterinarios/olvide-password/${token}`
+      const url = `/veterinarios/olivide-password/${token}`
       const { data } = await clienteAxios.post(url, { password })
       console.log("🚀 ~ handleSubmit ~ data:", data)
 
