@@ -74,7 +74,7 @@ const autenticar = async (req, res) => {
 
     if (await usuarioExiste.comprobarPassword(password)) {
 
-        res.json({ token: generarJWT(usuarioExiste.id) })
+        return res.json({ token: generarJWT(usuarioExiste.id) })
         console.log('Password correcto')
     } else {
         const error = new Error('El password es incorrecto')
