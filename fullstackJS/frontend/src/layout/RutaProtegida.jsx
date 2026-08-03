@@ -10,7 +10,11 @@ export default function RutaProtegida() {
     return (
         < >
             <Header />
-            {auth?.perfil._id ? <Outlet /> : <Navigate to={"/"} />}
+            {auth?._id ? (
+                <main className="container mx-auto mt-20">
+                    <Outlet />
+                    </main>
+            ) : <Navigate to={"/"} />}
             <Footer />
 
         </>
