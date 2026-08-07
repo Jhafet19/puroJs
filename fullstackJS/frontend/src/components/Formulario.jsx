@@ -7,11 +7,11 @@ export default function Formulario() {
     const [nombre, setNombre] = useState('')
     const [prepietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
-    const [fecha, setFecha] = useState(Date.now())
+    const [fecha, setFecha] = useState('')
     const [sintomasl, setSintomas] = useState('')
     const [alerta, setAlerta] = useState({})
-    const { pacientes } = usePacientes()
-    console.log("🚀 ~ Formulario ~ pacientes :", pacientes)
+    const { pacientes, guardarPaciente } = usePacientes()
+ 
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,6 +22,8 @@ export default function Formulario() {
             })
             return
         }
+        setAlerta({})
+        guardarPaciente({ nombre, email, prepietario, sintomasl })
 
     }
     const { msg } = alerta
