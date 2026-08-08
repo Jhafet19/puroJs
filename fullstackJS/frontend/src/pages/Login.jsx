@@ -26,7 +26,7 @@ export default function Login() {
         try {
             const { data } = await clienteAxios.post('/veterinarios/login', { email, password })
             console.log("🚀 ~ handleSubmit ~ data:", data)
-            localStorage.setItem('token', data)
+            localStorage.setItem('token', data.token)
 
             setAuth(data)
             navigate('/admin')

@@ -5,17 +5,17 @@ import usePacientes from "../hooks/usePacientes"
 
 export default function Formulario() {
     const [nombre, setNombre] = useState('')
-    const [prepietario, setPropietario] = useState('')
+    const [propietario, setPropietario] = useState('')
     const [email, setEmail] = useState('')
     const [fecha, setFecha] = useState('')
-    const [sintomasl, setSintomas] = useState('')
+    const [sintomas, setSintomas] = useState('')
     const [alerta, setAlerta] = useState({})
     const { pacientes, guardarPaciente } = usePacientes()
- 
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if ([nombre, prepietario, email, fecha, sintomasl].includes('')) {
+        if ([nombre, propietario, email, fecha, sintomas].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
                 error: true
@@ -23,7 +23,7 @@ export default function Formulario() {
             return
         }
         setAlerta({})
-        guardarPaciente({ nombre, email, prepietario, sintomasl })
+        guardarPaciente({ nombre, email, propietario, fecha, sintomas })
 
     }
     const { msg } = alerta
@@ -48,7 +48,7 @@ export default function Formulario() {
                     <label htmlFor="propietario" className="text-gray-700 uppercase font-bold">Nombre del Propietario</label>
                     <input type="text" placeholder="Nombre del propietario" id="propietario"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                        value={prepietario} onChange={e => setPropietario(e.target.value)}
+                        value={propietario} onChange={e => setPropietario(e.target.value)}
 
                     />
                 </div>
@@ -73,7 +73,7 @@ export default function Formulario() {
                     <label htmlFor="sintomas" className="text-gray-700 uppercase font-bold">Email del Propietario</label>
                     <textarea id="sintomas" placeholder="Describe los sintomas"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                        value={sintomasl} onChange={e => setSintomas(e.target.value)}
+                        value={sintomas} onChange={e => setSintomas(e.target.value)}
 
                     />
                 </div>
