@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Alerta from "../components/Alerta"
 import usePacientes from "../hooks/usePacientes"
 
@@ -10,7 +10,21 @@ export default function Formulario() {
     const [fecha, setFecha] = useState('')
     const [sintomas, setSintomas] = useState('')
     const [alerta, setAlerta] = useState({})
-    const { pacientes, guardarPaciente } = usePacientes()
+    const { paciente, guardarPaciente } = usePacientes()
+    const [id, setId] = useState(null)
+
+    useEffect(() => {
+        if (paciente?.nombre) {
+            setNombre(paciente.nombre)
+            setPropietario(paciente.propietario)
+            setEmail(paciente.email)
+            setFecha(paciente.fecha)
+            setSintomas(paciente.sintomas)
+            setId(paciente._id)
+        }
+        console.log('render o cambio paciente')
+    }, [paciente])
+    console.log("🚀 ~ Formulario ~ paciente:", paciente)
 
 
     const handleSubmit = (e) => {
@@ -23,7 +37,15 @@ export default function Formulario() {
             return
         }
         setAlerta({})
-        guardarPaciente({ nombre, email, propietario, fecha, sintomas })
+        guardarPaciente({ nombre, email, propietario, fecha, sintomas, id })
+        setAlerta({ msg: 'Guardado Correctamente' })
+
+        setNombre('')
+        setEmail('')
+        setFecha('')
+        setPropietario('')
+        setSintomas('')
+        setId('')
 
     }
     const { msg } = alerta
@@ -77,7 +99,9 @@ export default function Formulario() {
 
                     />
                 </div>
-                <input type="submit" value="Agregar paciente" className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-800 cursor-pointer transition-colors" />
+                <input type="submit" value={id ? 'Guardar Cambios' : "Agregar paciente"}
+                    className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-800 cursor-pointer 
+                transition-colors" />
             </form>
         </>
     )
