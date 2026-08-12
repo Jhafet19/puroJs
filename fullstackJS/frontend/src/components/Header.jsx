@@ -9,7 +9,7 @@ export default function Header() {
         <h1 className="font-bold text-2xl text-indigo-200 text-center ">Administrador de Pacientes ds {' '} <span className="font-black text-white"> Veterinaria</span></h1>
         <nav className="flex flex-col md:flex-row gap-4  mt-5 lg:mt-0 items-center">
           <Link to={"/admin"} className="text-white text-sm uppercase  font-bold"  >Pacientes</Link>
-          <Link to={"/perfil"} className="text-white text-sm uppercase font-bold" >Perfil</Link>
+          <Link to={"/admin/perfil"} className="text-white text-sm uppercase font-bold" >Perfil</Link>
           <button type="button" className="text-white text-sm uppercase  font-bold" onClick={cerrarSesion}>Cerrar Sesion</button>
         </nav>
 

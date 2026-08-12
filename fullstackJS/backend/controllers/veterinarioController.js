@@ -76,7 +76,7 @@ const autenticar = async (req, res) => {
 
         usuarioExiste.token = generarJWT(usuarioExiste.id)
         return res.json({
-            _id: usuarioExiste._id, nombre: usuarioExiste.nombre, email: usuarioExiste.email ,
+            _id: usuarioExiste._id, nombre: usuarioExiste.nombre, email: usuarioExiste.email,
             token: usuarioExiste.token
         })
 
@@ -145,6 +145,40 @@ const nuevoPassword = async (req, res) => {
     }
 
 }
+
+const actualizarPerfil = async (req, res) => {
+    const veterinario = await Veterinario.findById(req.params.id)
+    if (!veterinario) {
+        const error = new Error('El veterinario no se encuentra')
+        return res.status(400).json({ msg: error.message })
+    }
+
+    const { email } = req.body
+    if (veterinario.email !== email) {
+        const existeEmail = await Veterinario.findOne({ email })
+        if (existeEmail) {
+            const error = new Error('Hubo un error')
+            return res.status(400).json({ msg: error.message })
+        }
+
+
+    }
+    try {
+        veterinario.nombre = req.body.nombre || veterinario.nombre;
+        veterinario.email = req.body.email || veterinario.email;
+        veterinario.web = req.body.web || veterinario.web;
+        veterinario.telefono = req.body.telefono || veterinario.telefono;
+
+        const veterinarioActualizado = await Veterinario.save()
+        res.json(veterinarioActualizado)
+
+
+    } catch (error) {
+        console.error();
+
+    }
+
+}
 export {
     registrar,
     perfil,
@@ -152,5 +186,6 @@ export {
     autenticar,
     olvidePassword,
     comprobarToken,
-    nuevoPassword
+    nuevoPassword,
+    actualizarPerfil
 }
