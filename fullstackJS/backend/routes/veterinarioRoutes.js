@@ -1,5 +1,5 @@
 import express from 'express'
-import { perfil, registrar, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword,actualizarPerfil } from '../controllers/veterinarioController.js'
+import { perfil, registrar, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil, actualizarPassword } from '../controllers/veterinarioController.js'
 import checkAuth from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -13,6 +13,7 @@ router.post('/olivide-password/:token', nuevoPassword)
 
 router.get('/perfil', checkAuth, perfil)
 router.put('/perfil/:id', checkAuth, actualizarPerfil)
+router.put('/actualizar-password', checkAuth, actualizarPassword)
 
 
 export default router
