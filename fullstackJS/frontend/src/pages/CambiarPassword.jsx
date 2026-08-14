@@ -12,7 +12,7 @@ export default function CambiarPassword() {
         pwd_nuevo: ''
     })
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventeDefault()
         if (Object.values(password).some(campo => campo !== '')) {
 
@@ -23,7 +23,8 @@ export default function CambiarPassword() {
             setAlerta({ msg: 'La contraseña debe de ser mayor a 6', error: true })
             return
         }
-        guardarPassword(password)
+        const res = await guardarPassword(password)
+        setAlerta(res)
     }
     const { msg } = alerta
 

@@ -96,8 +96,15 @@ const AuthProvider = ({ children }) => {
             const url = '/veterinarios/actualizar-password'
             const { data } = clienteAxios.put(url, datos, config)
             console.log("🚀 ~ guardarPassword ~ data:", data)
+            return {
+                msg: data.msg
+            }
         } catch (error) {
             console.error(error);
+            return {
+                msg: error,
+                error: true
+            }
 
         }
     }
