@@ -1,8 +1,8 @@
-import { formulario } from '../selectores.js'
+import { formulario } from '../selectores'
 
 export default class Notificacion {
 
-    constructor({texto, tipo}) {
+    constructor({ text, tipo }) {
         this.texto = texto
         this.tipo = tipo
         this.mostrar()

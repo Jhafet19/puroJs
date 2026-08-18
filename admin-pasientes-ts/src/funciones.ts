@@ -1,6 +1,6 @@
-import Notificacion from './classes/Notificacion.js';
-import AdminCitas from './classes/AdminCitas.js';
-import { citaObj, editando } from './variables.js'
+import Notificacion from './classes/Notificacion';
+import AdminCitas from './classes/AdminCitas';
+import { citaObj, editando } from './variables'
 import { formulario, formularioInput, pacienteInput, propietarioInput, emailInput, fechaInput, sintomasInput } from './selectores.js'
 
 const citas = new AdminCitas()

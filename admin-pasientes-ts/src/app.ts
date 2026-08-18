@@ -1,6 +1,7 @@
 import { pacienteInput, propietarioInput, emailInput, fechaInput, sintomasInput, formulario } from './selectores.ts'
 import { datosCita, submitCita } from './funciones.ts'
 import './style.css'
+
 // Eventos
 pacienteInput.addEventListener('change', datosCita)
 propietarioInput.addEventListener('change', datosCita)
