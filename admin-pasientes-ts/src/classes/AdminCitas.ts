@@ -1,34 +1,43 @@
 import { contenedorCitas } from "../selectores"
 import { cargarEdicion } from "../funciones"
 
+interface Cita {
+    id: string,
+    paciente: string,
+    propietario: string,
+    email: string,
+    fecha: string,
+    sintomas: string
+}
 export default class AdminCitas {
+    citas: Cita[]
     constructor() {
         this.citas = []
     }
 
-    agregar(cita) {
+    agregar(cita: Cita) {
         this.citas = [...this.citas, cita]
         this.mostrar()
     }
 
-    editar(citaActualizada) {
-        this.citas = this.citas.map( cita => cita.id === citaActualizada.id ? citaActualizada : cita )
+    editar(citaActualizada: Cita) {
+        this.citas = this.citas.map(cita => cita.id === citaActualizada.id ? citaActualizada : cita)
         this.mostrar()
     }
 
-    eliminar(id) {
-        this.citas = this.citas.filter( cita =>  cita.id !== id)
+    eliminar(id: Cita['id']) {
+        this.citas = this.citas.filter(cita => cita.id !== id)
         this.mostrar()
     }
     mostrar() {
 
         // Limpiar el HTML
-        while(contenedorCitas.firstChild) {
+        while (contenedorCitas?.firstChild) {
             contenedorCitas.removeChild(contenedorCitas.firstChild)
         }
 
         // Si hay citas
-        if(this.citas.length === 0) {
+        if (this.citas.length === 0 && contenedorCitas) {
             contenedorCitas.innerHTML = '<p class="text-xl mt-5 mb-10 text-center">No Hay Pacientes</p>'
             return
         }
@@ -36,24 +45,24 @@ export default class AdminCitas {
         // Generando las citas
         this.citas.forEach(cita => {
             const divCita = document.createElement('div');
-            divCita.classList.add('mx-5', 'my-10', 'bg-white', 'shadow-md', 'px-5', 'py-10' ,'rounded-xl', 'p-3');
-        
+            divCita.classList.add('mx-5', 'my-10', 'bg-white', 'shadow-md', 'px-5', 'py-10', 'rounded-xl', 'p-3');
+
             const paciente = document.createElement('p');
             paciente.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
             paciente.innerHTML = `<span class="font-bold uppercase">Paciente: </span> ${cita.paciente}`;
-        
+
             const propietario = document.createElement('p');
             propietario.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
             propietario.innerHTML = `<span class="font-bold uppercase">Propietario: </span> ${cita.propietario}`;
-        
+
             const email = document.createElement('p');
             email.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
             email.innerHTML = `<span class="font-bold uppercase">E-mail: </span> ${cita.email}`;
-        
+
             const fecha = document.createElement('p');
             fecha.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
             fecha.innerHTML = `<span class="font-bold uppercase">Fecha: </span> ${cita.fecha}`;
-        
+
             const sintomas = document.createElement('p');
             sintomas.classList.add('font-normal', 'mb-3', 'text-gray-700', 'normal-case')
             sintomas.innerHTML = `<span class="font-bold uppercase">Síntomas: </span> ${cita.sintomas}`;
@@ -75,7 +84,7 @@ export default class AdminCitas {
 
             contenedorBotones.appendChild(btnEditar)
             contenedorBotones.appendChild(btnEliminar)
-        
+
             // Agregar al HTML
             divCita.appendChild(paciente);
             divCita.appendChild(propietario);
@@ -83,7 +92,7 @@ export default class AdminCitas {
             divCita.appendChild(fecha);
             divCita.appendChild(sintomas);
             divCita.appendChild(contenedorBotones)
-            contenedorCitas.appendChild(divCita);
-        });    
+            contenedorCitas?.appendChild(divCita);
+        });
     }
 }

@@ -1,17 +1,18 @@
 import Notificacion from './classes/Notificacion';
 import AdminCitas from './classes/AdminCitas';
-import { citaObj, editando } from './variables'
-import { formulario, formularioInput, pacienteInput, propietarioInput, emailInput, fechaInput, sintomasInput } from './selectores.js'
+import { citaObj, editando } from './variables'
+import { formulario, formularioInput, pacienteInput, propietarioInput, emailInput, fechaInput, sintomasInput } from './selectores.js'
 
 const citas = new AdminCitas()
-export function datosCita(e) {
-    citaObj[e.target.name] = e.target.value
+export function datosCita(e: Event) {
+    const target = e.target as HTMLInputElement
+    citaObj[target.name] = target.value
 }
 
-export function submitCita(e) {
+export function submitCita(e: Event) {
     e.preventDefault();
-    
-    if( Object.values(citaObj).some(valor => valor.trim() === '')) {
+
+    if (Object.values(citaObj).some(valor => valor.trim() === '')) {
         new Notificacion({
             texto: 'Todos los campos son obligatorios',
             tipo: 'error'
@@ -19,19 +20,19 @@ export function submitCita(e) {
         return
     }
 
-    if(editando.value) {
-        citas.editar({...citaObj})
+    if (editando.value) {
+        citas.editar({ ...citaObj })
         new Notificacion({
             texto: 'Guardado Correctamente',
             tipo: 'exito'
         })
     } else {
-        citas.agregar({...citaObj})
+        citas.agregar({ ...citaObj })
         new Notificacion({
             texto: 'Paciente Registrado',
             tipo: 'exito'
         })
-    }    
+    }
     formulario.reset()
     reiniciarObjetoCita()
     formularioInput.value = 'Registrar Paciente'

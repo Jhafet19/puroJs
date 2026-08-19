@@ -1,10 +1,19 @@
 import { formulario } from '../selectores'
 
+type NotificacionType = {
+    texto: string;
+    tipo: 'error' | 'exito' | ''
+}
 export default class Notificacion {
 
-    constructor({ text, tipo }) {
-        this.texto = texto
-        this.tipo = tipo
+    notificacion: NotificacionType = {
+        texto: '',
+        tipo: ''
+    }
+
+    constructor({ texto, tipo }: NotificacionType) {
+        this.notificacion.texto = texto
+        this.notificacion.tipo = tipo
         this.mostrar()
     }
 
@@ -18,13 +27,13 @@ export default class Notificacion {
         alertaPrevia?.remove()
 
         // Si es de tipo error, agrega una clase
-        this.tipo === 'error' ? alerta.classList.add('bg-red-500') : alerta.classList.add('bg-green-500')
+        this.notificacion.tipo === 'error' ? alerta.classList.add('bg-red-500') : alerta.classList.add('bg-green-500')
 
         // Mensaje de error
-        alerta.textContent = this.texto
+        alerta.textContent = this.notificacion.texto
 
         // Insertar en el DOM
-        formulario.parentElement.insertBefore(alerta, formulario)
+        formulario?.parentElement?.insertBefore(alerta, formulario)
 
         // Quitar después de 5 segundos
         setTimeout(() => {
